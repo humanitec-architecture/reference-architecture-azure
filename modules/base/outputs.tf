@@ -24,7 +24,7 @@ output "aks_server_app_id" {
 
 # Ingress outputs
 
-output "ingress_nginx_external_dns" {
-  description = "External DNS entry for the Nginx ingress controller"
+output "ingress_nginx_external_ip" {
+  description = "External IP address for the Nginx ingress controller"
   value       = local.ingress_address
 }

@@ -41,14 +41,13 @@ Module that provides the reference architecture.
 | [azuread_group_member.humanitec_cluster_admin](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) | resource |
 | [azuread_service_principal.humanitec](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal) | resource |
 | [azuread_service_principal_password.humanitec](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal_password) | resource |
+| [azurerm_public_ip.ingress](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 | [azurerm_resource_group.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 | [azurerm_role_assignment.humanitec_cluster_user_role](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
 | [helm_release.ingress_nginx](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [humanitec_resource_definition.k8s_cluster_driver](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition) | resource |
-| [humanitec_resource_definition.k8s_logging](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition) | resource |
 | [humanitec_resource_definition.k8s_namespace](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition) | resource |
 | [humanitec_resource_definition_criteria.k8s_cluster_driver](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
-| [humanitec_resource_definition_criteria.k8s_logging](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
 | [humanitec_resource_definition_criteria.k8s_namespace](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
 | [azuread_client_config.current](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/client_config) | data source |
 | [azuread_service_principal.aks](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/service_principal) | data source |
@@ -76,5 +75,5 @@ Module that provides the reference architecture.
 | <a name="output_aks_host"></a> [aks\_host](#output\_aks\_host) | Endpoint for your Kubernetes API server |
 | <a name="output_aks_server_app_id"></a> [aks\_server\_app\_id](#output\_aks\_server\_app\_id) | Azure Kubernetes Service AAD Server |
 | <a name="output_environment"></a> [environment](#output\_environment) | Name of the environment to be deployed into |
-| <a name="output_ingress_nginx_external_dns"></a> [ingress\_nginx\_external\_dns](#output\_ingress\_nginx\_external\_dns) | External DNS entry for the Nginx ingress controller |
+| <a name="output_ingress_nginx_external_ip"></a> [ingress\_nginx\_external\_ip](#output\_ingress\_nginx\_external\_ip) | External IP address for the Nginx ingress controller |
 <!-- END_TF_DOCS -->

@@ -21,7 +21,7 @@ resource "azuread_group_member" "cluster_admins" {
   member_object_id = data.azuread_client_config.current.object_id
 }
 
-# VPC and AKS cluster
+# RG and AKS cluster
 
 resource "azurerm_resource_group" "main" {
   location = var.location
@@ -44,6 +44,10 @@ module "azure_aks" {
   ]
 
   oidc_issuer_enabled = true
+
+  network_contributor_role_assigned_subnet_ids = {
+    resource_group = azurerm_resource_group.main.id
+  }
 
   depends_on = [azurerm_resource_group.main]
 
@@ -76,33 +80,4 @@ resource "azurerm_role_assignment" "humanitec_cluster_user_role" {
 resource "azuread_group_member" "humanitec_cluster_admin" {
   group_object_id  = azuread_group.cluster_admins.id
   member_object_id = azuread_service_principal.humanitec.id
-}
-
-
-# Ingress controller
-
-resource "helm_release" "ingress_nginx" {
-  name             = "ingress-nginx"
-  namespace        = "ingress-nginx"
-  create_namespace = true
-  repository       = "https://kubernetes.github.io/ingress-nginx"
-
-  chart   = "ingress-nginx"
-  version = "4.8.2"
-  wait    = true
-  timeout = 600
-
-  set {
-    type  = "string"
-    name  = "controller.replicaCount"
-    value = var.ingress_nginx_replica_count
-  }
-
-  set {
-    type  = "string"
-    name  = "controller.minAvailable"
-    value = var.ingress_nginx_min_unavailable
-  }
-
-  depends_on = [module.azure_aks.node_resource_group]
 }

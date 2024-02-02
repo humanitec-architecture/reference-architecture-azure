@@ -26,5 +26,5 @@ output "aks_server_app_id" {
 
 output "ingress_nginx_external_ip" {
   description = "External IP address for the Nginx ingress controller"
-  value       = local.ingress_address
+  value       = azurerm_public_ip.ingress.ip_address
 }

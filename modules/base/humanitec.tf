@@ -1,9 +1,5 @@
 # Humanitec resource definition to connect the cluster to Humanitec
 
-locals {
-  ingress_address = data.kubernetes_service.ingress_nginx_controller.status[0].load_balancer[0].ingress[0].ip
-}
-
 resource "humanitec_resource_definition" "k8s_cluster_driver" {
   driver_type = "humanitec/k8s-cluster-aks"
   id          = var.cluster_name
@@ -12,7 +8,7 @@ resource "humanitec_resource_definition" "k8s_cluster_driver" {
 
   driver_inputs = {
     values_string = jsonencode({
-      "loadbalancer" : local.ingress_address
+      "loadbalancer" : azurerm_public_ip.ingress.ip_address
       "name" : module.azure_aks.aks_name
       "resource_group" : azurerm_resource_group.main.name
       "subscription_id" : var.subscription_id,
@@ -35,7 +31,7 @@ resource "humanitec_resource_definition_criteria" "k8s_cluster_driver" {
 }
 
 resource "humanitec_resource_definition" "k8s_namespace" {
-  driver_type = "humanitec/static"
+  driver_type = "humanitec/echo"
   id          = "default-namespace"
   name        = "default-namespace"
   type        = "k8s-namespace"

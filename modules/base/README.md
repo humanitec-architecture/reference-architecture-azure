@@ -13,7 +13,6 @@ Module that provides the reference architecture.
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.87 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12 |
 | <a name="requirement_humanitec"></a> [humanitec](#requirement\_humanitec) | ~> 0 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.25 |
 
 ## Providers
 
@@ -23,7 +22,6 @@ Module that provides the reference architecture.
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 3.87 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | ~> 2.12 |
 | <a name="provider_humanitec"></a> [humanitec](#provider\_humanitec) | ~> 0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | ~> 2.25 |
 
 ## Modules
 
@@ -52,7 +50,6 @@ Module that provides the reference architecture.
 | [azuread_client_config.current](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/client_config) | data source |
 | [azuread_service_principal.aks](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/service_principal) | data source |
 | [azurerm_subscription.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
-| [kubernetes_service.ingress_nginx_controller](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/service) | data source |
 
 ## Inputs
 

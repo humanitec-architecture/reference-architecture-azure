@@ -57,12 +57,12 @@ Module that provides the reference architecture.
 |------|-------------|------|---------|:--------:|
 | <a name="input_location"></a> [location](#input\_location) | Azure region to deploy into | `string` | n/a | yes |
 | <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | Azure Subscription (ID) to use | `string` | n/a | yes |
-| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name for the EKS cluster | `string` | `"ref-arch"` | no |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name for the AKS cluster | `string` | `"ref-arch"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Name of the environment to be deployed into | `string` | `"development"` | no |
 | <a name="input_ingress_nginx_min_unavailable"></a> [ingress\_nginx\_min\_unavailable](#input\_ingress\_nginx\_min\_unavailable) | Number of allowed unavaiable replicas for the ingress-nginx controller | `number` | `1` | no |
 | <a name="input_ingress_nginx_replica_count"></a> [ingress\_nginx\_replica\_count](#input\_ingress\_nginx\_replica\_count) | Number of replicas for the ingress-nginx controller | `number` | `2` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Name of the resource group to create | `string` | `"ref-arch"` | no |
-| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | List of EC2 instances types to use for EKS nodes | `string` | `"Standard_D2_v2"` | no |
+| <a name="input_vm_size"></a> [vm\_size](#input\_vm\_size) | The Azure VM instances type to use as "Agents" (aka Kubernetes Nodes) in AKS | `string` | `"Standard_D2_v2"` | no |
 
 ## Outputs
 

@@ -16,13 +16,13 @@ variable "resource_group_name" {
 }
 
 variable "cluster_name" {
-  description = "Name for the EKS cluster"
+  description = "Name for the AKS cluster"
   type        = string
   default     = "ref-arch"
 }
 
 variable "vm_size" {
-  description = "List of EC2 instances types to use for EKS nodes"
+  description = "The Azure VM instances type to use as \"Agents\" (aka Kubernetes Nodes) in AKS"
   type        = string
   default     = "Standard_D2_v2"
 }

@@ -8,5 +8,5 @@ location = ""
 # Azure Subscription (ID) to use
 subscription_id = ""
 
-# List of EC2 instances types to use for EKS nodes
+# The Azure VM instances type to use as "Agents" (aka Kubernetes Nodes) in AKS
 vm_size = "Standard_D2_v2"

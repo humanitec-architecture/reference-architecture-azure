@@ -141,7 +141,7 @@ Check for the existence of key elements of the reference architecture. This is a
    export HUMANITEC_ORG="my-humanitec-org"
    ```
 
-2. Verify the existence of the Resource Definition for the EKS cluster in your Humanitec Organization:
+2. Verify the existence of the Resource Definition for the AKS cluster in your Humanitec Organization:
 
    ```
    curl -s https://api.humanitec.io/orgs/${HUMANITEC_ORG}/resources/defs/ref-arch \
@@ -216,7 +216,7 @@ Once you are finished with the reference architecture, you can remove all provis
 | humanitec\_org\_id | Humanitec Organization ID | `string` | n/a | yes |
 | location | Azure region to deploy into | `string` | n/a | yes |
 | subscription\_id | Azure Subscription (ID) to use | `string` | n/a | yes |
-| vm\_size | List of EC2 instances types to use for EKS nodes | `string` | `"Standard_D2_v2"` | no |
+| vm\_size | The Azure VM instances type to use as "Agents" (aka Kubernetes Nodes) in AKS | `string` | `"Standard_D2_v2"` | no |
 <!-- END_TF_DOCS -->
 
 ## Learn more

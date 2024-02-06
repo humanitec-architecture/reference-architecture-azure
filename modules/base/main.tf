@@ -2,8 +2,6 @@ locals {
   aks_cluster_user_role_name = "Azure Kubernetes Service Cluster User Role"
 }
 
-data "azurerm_subscription" "main" {}
-
 data "azuread_service_principal" "aks" {
   # The ID of the managed "Azure Kubernetes Service AAD Server" application
   # https://learn.microsoft.com/en-us/azure/aks/kubelogin-authentication#how-to-use-kubelogin-with-aks
@@ -74,7 +72,7 @@ resource "azuread_service_principal_password" "humanitec" {
 }
 
 resource "azurerm_role_assignment" "humanitec_cluster_user_role" {
-  scope                = data.azurerm_subscription.main.id
+  scope                = azurerm_resource_group.main.id
   role_definition_name = local.aks_cluster_user_role_name
   principal_id         = azuread_service_principal.humanitec.id
 }

@@ -1,7 +1,3 @@
-locals {
-  aks_cluster_user_role_name = "Azure Kubernetes Service Cluster User Role"
-}
-
 data "azuread_service_principal" "aks" {
   # The ID of the managed "Azure Kubernetes Service AAD Server" application
   # https://learn.microsoft.com/en-us/azure/aks/kubelogin-authentication#how-to-use-kubelogin-with-aks
@@ -36,9 +32,13 @@ module "azure_aks" {
   resource_group_name       = azurerm_resource_group.main.name
   automatic_channel_upgrade = "stable"
 
-  local_account_disabled            = true
+  local_account_disabled = true
+
+  # Configure as "Azure AD authentication with Azure RBAC"
+  # https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac
   rbac_aad_managed                  = true
   role_based_access_control_enabled = true
+  rbac_aad_azure_rbac_enabled       = true
   rbac_aad_admin_group_object_ids = [
     azuread_group.cluster_admins.id
   ]
@@ -71,13 +71,16 @@ resource "azuread_service_principal_password" "humanitec" {
   service_principal_id = azuread_service_principal.humanitec.id
 }
 
-resource "azurerm_role_assignment" "humanitec_cluster_user_role" {
-  scope                = azurerm_resource_group.main.id
-  role_definition_name = local.aks_cluster_user_role_name
+# Required to fetch AKS credentials
+resource "azurerm_role_assignment" "humanitec_cluster_user" {
+  scope                = module.azure_aks.aks_id
+  role_definition_name = "Azure Kubernetes Service Cluster User Role"
   principal_id         = azuread_service_principal.humanitec.id
 }
 
-resource "azuread_group_member" "humanitec_cluster_admin" {
-  group_object_id  = azuread_group.cluster_admins.id
-  member_object_id = azuread_service_principal.humanitec.id
+# Admin permissions for the entire cluster
+resource "azurerm_role_assignment" "humanitec_cluster_admin_permissions" {
+  scope                = module.azure_aks.aks_id
+  role_definition_name = "Azure Kubernetes Service RBAC Cluster Admin"
+  principal_id         = azuread_service_principal.humanitec.id
 }

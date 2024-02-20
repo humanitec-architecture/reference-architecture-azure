@@ -21,6 +21,12 @@ variable "cluster_name" {
   default     = "ref-arch"
 }
 
+variable "container_registry_name_prefix" {
+  description = "Name for Azure Container Registry"
+  type        = string
+  default     = "humrefarch"
+}
+
 variable "vm_size" {
   description = "The Azure VM instances type to use as \"Agents\" (aka Kubernetes Nodes) in AKS"
   type        = string

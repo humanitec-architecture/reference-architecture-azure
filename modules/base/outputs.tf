@@ -5,6 +5,26 @@ output "environment" {
   value       = var.environment
 }
 
+output "az_resource_group_name" {
+  description = "Name of the created azure resource group"
+  value       = azurerm_resource_group.main.name
+}
+
+output "az_resource_group_location" {
+  description = "Location of the created azure resource group"
+  value       = azurerm_resource_group.main.location
+}
+
+output "az_container_registry_name" {
+  description = "Name of the created azure container registry"
+  value       = azurerm_container_registry.acr.name
+}
+
+output "az_container_registry_id" {
+  description = "ID of the created azure container registry"
+  value       = azurerm_container_registry.acr.id
+}
+
 # AKS outputs
 
 output "aks_host" {

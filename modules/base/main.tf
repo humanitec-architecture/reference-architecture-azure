@@ -54,6 +54,10 @@ module "azure_aks" {
 
   agents_size             = var.vm_size
   node_os_channel_upgrade = "NodeImage"
+
+  attached_acr_id_map = {
+    main = azurerm_container_registry.acr.id
+  }
 }
 
 # Service Principal used by Humanitec to access the AKS cluster

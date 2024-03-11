@@ -22,7 +22,7 @@ Module that provides the reference architecture.
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | ~> 2.47 |
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 3.87 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | ~> 2.12 |
-| <a name="provider_humanitec"></a> [humanitec](#provider\_humanitec) | ~> 0 |
+| <a name="provider_humanitec"></a> [humanitec](#provider\_humanitec) | ~> 1.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | ~> 3.5 |
 
 ## Modules

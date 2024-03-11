@@ -12,7 +12,7 @@ Module that provides the reference architecture.
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | ~> 2.47 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.87 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12 |
-| <a name="requirement_humanitec"></a> [humanitec](#requirement\_humanitec) | ~> 0 |
+| <a name="requirement_humanitec"></a> [humanitec](#requirement\_humanitec) | ~> 1.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.5 |
 
 ## Providers
@@ -22,7 +22,7 @@ Module that provides the reference architecture.
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | ~> 2.47 |
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 3.87 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | ~> 2.12 |
-| <a name="provider_humanitec"></a> [humanitec](#provider\_humanitec) | ~> 0 |
+| <a name="provider_humanitec"></a> [humanitec](#provider\_humanitec) | ~> 1.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | ~> 3.5 |
 
 ## Modules

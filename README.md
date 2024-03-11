@@ -199,7 +199,7 @@ Once you are finished with the reference architecture, you can remove all provis
 | azuread | ~> 2.47 |
 | azurerm | ~> 3.87 |
 | helm | ~> 2.12 |
-| humanitec | ~> 0 |
+| humanitec | ~> 1.0 |
 | kubernetes | ~> 2.25 |
 
 ### Modules

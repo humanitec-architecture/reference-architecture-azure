@@ -87,7 +87,7 @@ Once you are finished with the reference architecture, you can remove all provis
 | terraform | >= 1.3.0 |
 | Azure | ~> 5.17 |
 | github | ~> 5.38 |
-| humanitec | ~> 0.13 |
+| humanitec | ~> 1.0 |
 
 ### Providers
 
@@ -95,7 +95,7 @@ Once you are finished with the reference architecture, you can remove all provis
 |------|---------|
 | Azure | ~> 5.17 |
 | github | ~> 5.38 |
-| humanitec | ~> 0.13 |
+| humanitec | ~> 1.0 |
 
 ### Modules
 

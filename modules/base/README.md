@@ -74,6 +74,7 @@ Module that provides the reference architecture.
 |------|-------------|
 | <a name="output_aks_cluster_ca_certificate"></a> [aks\_cluster\_ca\_certificate](#output\_aks\_cluster\_ca\_certificate) | Base64 encoded certificate data required to communicate with the cluster |
 | <a name="output_aks_host"></a> [aks\_host](#output\_aks\_host) | Endpoint for your Kubernetes API server |
+| <a name="output_aks_oidc_issuer_url"></a> [aks\_oidc\_issuer\_url](#output\_aks\_oidc\_issuer\_url) | Issuer URL for the OpenID Connect discovery endpoint |
 | <a name="output_aks_server_app_id"></a> [aks\_server\_app\_id](#output\_aks\_server\_app\_id) | Azure Kubernetes Service AAD Server |
 | <a name="output_az_container_registry_id"></a> [az\_container\_registry\_id](#output\_az\_container\_registry\_id) | ID of the created azure container registry |
 | <a name="output_az_container_registry_name"></a> [az\_container\_registry\_name](#output\_az\_container\_registry\_name) | Name of the created azure container registry |

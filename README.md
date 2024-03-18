@@ -216,6 +216,12 @@ Once you are finished with the reference architecture, you can remove all provis
 | location | Azure region to deploy into | `string` | n/a | yes |
 | subscription\_id | Azure Subscription (ID) to use | `string` | n/a | yes |
 | vm\_size | The Azure VM instances type to use as "Agents" (aka Kubernetes Nodes) in AKS | `string` | `"Standard_D2_v2"` | no |
+
+### Outputs
+
+| Name | Description |
+|------|-------------|
+| aks\_cluster\_issuer\_url | Issuer URL for the OpenID Connect discovery endpoint |
 <!-- END_TF_DOCS -->
 
 ## Learn more

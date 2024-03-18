@@ -85,15 +85,19 @@ Once you are finished with the reference architecture, you can remove all provis
 | Name | Version |
 |------|---------|
 | terraform | >= 1.3.0 |
-| Azure | ~> 5.17 |
+| azapi | ~> 1.11 |
+| azuread | ~> 2.47 |
+| azurerm | ~> 3.87 |
 | github | ~> 5.38 |
+| helm | ~> 2.12 |
 | humanitec | ~> 1.0 |
+| kubernetes | ~> 2.25 |
 
 ### Providers
 
 | Name | Version |
 |------|---------|
-| Azure | ~> 5.17 |
+| azurerm | ~> 3.87 |
 | github | ~> 5.38 |
 | humanitec | ~> 1.0 |
 
@@ -101,36 +105,29 @@ Once you are finished with the reference architecture, you can remove all provis
 
 | Name | Source | Version |
 |------|--------|---------|
-| backstage\_ecr | terraform-Azure-modules/ecr/Azure | ~> 1.6 |
-| backstage\_iam\_policy\_ecr\_create\_repository | git::<https://github.com/humanitec-architecture/resource-packs-Azure.git//humanitec-resource-defs/iam-policy/ecr-create-repository> | n/a |
-| backstage\_iam\_role\_service\_account | git::<https://github.com/humanitec-architecture/resource-packs-Azure.git//humanitec-resource-defs/iam-role/service-account> | n/a |
-| backstage\_k8s\_service\_account | git::<https://github.com/humanitec-architecture/resource-packs-Azure.git//humanitec-resource-defs/k8s/service-account> | n/a |
-| backstage\_mysql | git::<https://github.com/humanitec-architecture/resource-packs-in-cluster.git//humanitec-resource-defs/mysql/basic> | n/a |
-| backstage\_postgres | git::<https://github.com/humanitec-architecture/resource-packs-in-cluster.git//humanitec-resource-defs/postgres/basic> | n/a |
-| backstage\_workload | git::<https://github.com/humanitec-architecture/resource-packs-Azure.git//humanitec-resource-defs/workload/service-account> | n/a |
+| backstage\_mysql | git::https://github.com/humanitec-architecture/resource-packs-in-cluster.git//humanitec-resource-defs/mysql/basic | main |
+| backstage\_postgres | git::https://github.com/humanitec-architecture/resource-packs-in-cluster.git//humanitec-resource-defs/postgres/basic | main |
 | base | ../../modules/base | n/a |
-| iam\_github\_oidc\_provider | terraform-Azure-modules/iam/Azure//modules/iam-github-oidc-provider | ~> 5.30 |
-| iam\_github\_oidc\_role | terraform-Azure-modules/iam/Azure//modules/iam-github-oidc-role | ~> 5.30 |
 
 ### Resources
 
 | Name | Type |
 |------|------|
-| [Azure_iam_policy.ecr_push_policy](https://registry.terraform.io/providers/hashicorp/Azure/latest/docs/resources/iam_policy) | resource |
+| [azurerm_federated_identity_credential.github_oidc_identity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/federated_identity_credential) | resource |
+| [azurerm_role_assignment.github_oidc_identity_acr](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) | resource |
+| [azurerm_user_assigned_identity.github_oidc_identity](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity) | resource |
 | [github_actions_organization_secret.backstage_humanitec_token](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_secret) | resource |
-| [github_actions_organization_variable.backstage_Azure_region](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable) | resource |
-| [github_actions_organization_variable.backstage_Azure_role_arn](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable) | resource |
+| [github_actions_organization_variable.backstage_azure_acr_name](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable) | resource |
+| [github_actions_organization_variable.backstage_azure_client_id](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable) | resource |
+| [github_actions_organization_variable.backstage_azure_subscription_id](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable) | resource |
+| [github_actions_organization_variable.backstage_azure_tenant_id](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable) | resource |
 | [github_actions_organization_variable.backstage_cloud_provider](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable) | resource |
 | [github_actions_organization_variable.backstage_humanitec_org_id](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_organization_variable) | resource |
+| [github_actions_repository_oidc_subject_claim_customization_template.backstage](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_repository_oidc_subject_claim_customization_template) | resource |
 | [github_repository.backstage](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository) | resource |
 | [humanitec_application.backstage](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/application) | resource |
-| [humanitec_resource_definition_criteria.backstage_iam_policy_ecr_create_repository](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
-| [humanitec_resource_definition_criteria.backstage_iam_role_service_account](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
-| [humanitec_resource_definition_criteria.backstage_k8s_service_account](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
 | [humanitec_resource_definition_criteria.backstage_mysql](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
 | [humanitec_resource_definition_criteria.backstage_postgres](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
-| [humanitec_resource_definition_criteria.backstage_workload](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/resource_definition_criteria) | resource |
-| [humanitec_value.Azure_default_region](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/value) | resource |
 | [humanitec_value.backstage_cloud_provider](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/value) | resource |
 | [humanitec_value.backstage_github_app_client_id](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/value) | resource |
 | [humanitec_value.backstage_github_app_client_secret](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/value) | resource |
@@ -145,12 +142,16 @@ Once you are finished with the reference architecture, you can remove all provis
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| Azure\_account\_id | Azure Account (ID) to use | `string` | n/a | yes |
-| Azure\_region | Azure region | `string` | n/a | yes |
 | github\_org\_id | GitHub org id | `string` | n/a | yes |
 | humanitec\_ci\_service\_user\_token | Humanitec CI Service User Token | `string` | n/a | yes |
 | humanitec\_org\_id | Humanitec Organization ID | `string` | n/a | yes |
-| disk\_size | Disk size in GB to use for EKS nodes | `number` | `20` | no |
-| instance\_types | List of EC2 instances types to use for EKS nodes | `list(string)` | <pre>[<br>  "t3.large"<br>]</pre> | no |
-| resource\_packs\_Azure\_rev | Revision of the resource-packs-Azure repository to use | `string` | `"refs/heads/main"` | no |
+| location | Azure region to deploy into | `string` | n/a | yes |
+| subscription\_id | Azure Subscription (ID) to use | `string` | n/a | yes |
+| vm\_size | The Azure VM instances type to use as "Agents" (aka Kubernetes Nodes) in AKS | `string` | `"Standard_D2_v2"` | no |
+
+### Outputs
+
+| Name | Description |
+|------|-------------|
+| aks\_cluster\_issuer\_url | Issuer URL for the OpenID Connect discovery endpoint |
 <!-- END_TF_DOCS -->

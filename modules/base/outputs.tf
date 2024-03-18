@@ -42,6 +42,11 @@ output "aks_server_app_id" {
   value       = data.azuread_service_principal.aks.client_id
 }
 
+output "aks_oidc_issuer_url" {
+  description = "Issuer URL for the OpenID Connect discovery endpoint"
+  value       = module.azure_aks.oidc_issuer_url
+}
+
 # Ingress outputs
 
 output "ingress_nginx_external_ip" {

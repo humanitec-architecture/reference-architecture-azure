@@ -1,0 +1,27 @@
+
+# Name for the AKS cluster
+cluster_name = "ref-arch"
+
+# Name for Azure Container Registry
+container_registry_name_prefix = "humrefarch"
+
+# Name of the environment to be deployed into
+environment = "development"
+
+# Number of allowed unavaiable replicas for the ingress-nginx controller
+ingress_nginx_min_unavailable = 1
+
+# Number of replicas for the ingress-nginx controller
+ingress_nginx_replica_count = 2
+
+# Azure region to deploy into
+location = ""
+
+# Name of the resource group to create
+resource_group_name = "ref-arch"
+
+# Azure Subscription (ID) to use
+subscription_id = ""
+
+# The Azure VM instances type to use as "Agents" (aka Kubernetes Nodes) in AKS
+vm_size = "Standard_D2_v2"

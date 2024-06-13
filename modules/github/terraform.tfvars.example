@@ -1,0 +1,24 @@
+
+# ID of the created azure container registry
+az_container_registry_id = ""
+
+# Name of the created azure container registry
+az_container_registry_name = ""
+
+# Azure region to deploy into
+az_resource_group_location = ""
+
+# Name of the resource group
+az_resource_group_name = ""
+
+# GitHub org id
+github_org_id = ""
+
+# Humanitec CI Service User Token
+humanitec_ci_service_user_token = ""
+
+# Humanitec Organization ID
+humanitec_org_id = ""
+
+# Azure Subscription (ID) to use
+subscription_id = ""

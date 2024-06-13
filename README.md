@@ -58,7 +58,7 @@ This plane is where the actual infrastructure exists including clusters, databas
 
 ## How to spin up your Humanitec Azure Reference Architecture
 
-This repo contains an implementation of part of the Humanitec Reference Architecture for an Internal Developer Platform.
+This repo contains an implementation of part of the Humanitec Reference Architecture for an Internal Developer Platform, including Backstage as optional Portal solution.
 
 This repo covers the base layer of the implementation for Azure.
 
@@ -98,13 +98,13 @@ This reference architecture implementation uses Terraform. You will need to do t
 
    For example:
 
-   ```
+   ```shell
    export HUMANITEC_TOKEN="my-humanitec-api-token"
    ```
 
 5. Run terraform:
 
-   ```
+   ```shell
    terraform init
    terraform plan
    terraform apply
@@ -112,7 +112,7 @@ This reference architecture implementation uses Terraform. You will need to do t
 
    `terraform plan` and `apply` might output this message:
 
-   ```
+   ```shell
    │ Warning: Argument is deprecated
    │
    │   with module.base.module.azure_aks.azurerm_kubernetes_cluster.main,
@@ -136,13 +136,13 @@ Check for the existence of key elements of the reference architecture. This is a
 
 1. Set the `HUMANITEC_ORG` environment variable to the ID of your Humanitec Organization (must be all lowercase):
 
-   ```
+   ```shell
    export HUMANITEC_ORG="my-humanitec-org"
    ```
 
 2. Verify the existence of the Resource Definition for the AKS cluster in your Humanitec Organization:
 
-   ```
+   ```shell
    curl -s https://api.humanitec.io/orgs/${HUMANITEC_ORG}/resources/defs/ref-arch \
      --header "Authorization: Bearer ${HUMANITEC_TOKEN}" \
      | jq .id,.type
@@ -150,20 +150,20 @@ Check for the existence of key elements of the reference architecture. This is a
 
    This should output:
 
-   ```
+   ```shell
    "ref-arch"
    "k8s-cluster"
    ```
 
 3. Verify the existence of the newly created AKS cluster:
 
-   ```
+   ```shell
    az aks list --subscription <your-subscription>
    ```
 
    This should output:
 
-   ```
+   ```shell
    [
       {
          ... various properties ...
@@ -173,17 +173,56 @@ Check for the existence of key elements of the reference architecture. This is a
    ]
    ```
 
+### Enable a portal (optional)
+
+#### Portal Prerequisites
+
+Backstage requires a GitHub connection, which in turn needs:
+
+* A GitHub organization and permission to create new repositories in it. Go to <https://github.com/account/organizations/new> to create a new org (the "Free" option is fine). Note: is has to be an organization, a free account is not sufficient.
+* Create a classic github personal access token with `repo`, `workflow`, `delete_repo` and `admin:org` scope [here](https://github.com/settings/tokens).
+* Set the `GITHUB_TOKEN` environment variable to your token.
+
+  ```shell
+  export GITHUB_TOKEN="my-github-token"
+  ```
+
+* Set the `GITHUB_ORG_ID` environment variable to your GitHub organization ID.
+
+  ```shell
+  export GITHUB_ORG_ID="my-github-org-id"
+  ```
+
+* Install the GitHub App for Backstage into your GitHub organization
+  * Run `docker run --rm -it -e GITHUB_ORG_ID -v $(pwd):/pwd -p 127.0.0.1:3000:3000 ghcr.io/humanitec-architecture/create-gh-app` ([image source](https://github.com/humanitec-architecture/create-gh-app/)) and follow the instructions:
+    * “All repositories” ~> Install
+    * “Okay, […] was installed on the […] account.” ~> You can close the window and server.
+
+#### Portal Usage
+
+* Enable `with_backstage` inside your `terraform.tfvars` and configure the additional variables that a required for Backstage.
+* Perform another `terraform apply`
+
+#### Verify portal setup
+
+* [Fetch the DNS entry](https://developer.humanitec.com/score/getting-started/get-dns/) of the Humanitec Application `backstage`, Environment `development`.
+* Open the host in your browser.
+* Click the "Create" button and scaffold your first application.
+
 ### Cleaning up
 
 Once you are finished with the reference architecture, you can remove all provisioned infrastructure and the resource definitions created in Humanitec with the following:
 
-1. Ensure you are (still) logged in with `az`.
+Once you are finished with the reference architecture, you can remove all provisioned infrastructure and the resource definitions created in Humanitec with the following:
 
-2. Ensure you still have the `HUMANITEC_TOKEN` environment variable set to an appropriate Humanitec API token with the `Administrator` role on the Humanitec Organization.
+1. Delete all Humanitec Applications scaffolded using the Portal, if you used one, but not the `backstage` app itself.
+2. Ensure you are (still) logged in with `az`.
 
-3. Run terraform:
+3. Ensure you still have the `HUMANITEC_TOKEN` environment variable set to an appropriate Humanitec API token with the `Administrator` role on the Humanitec Organization.
 
-   ```
+4. Run terraform:
+
+   ```shell
    terraform destroy
    ```
 
@@ -198,24 +237,44 @@ Once you are finished with the reference architecture, you can remove all provis
 | azapi | ~> 1.11 |
 | azuread | ~> 2.47 |
 | azurerm | ~> 3.87 |
+| github | ~> 5.38 |
 | helm | ~> 2.12 |
 | humanitec | ~> 1.0 |
 | kubernetes | ~> 2.25 |
+| random | ~> 3.5 |
+
+### Providers
+
+| Name | Version |
+|------|---------|
+| humanitec | ~> 1.0 |
 
 ### Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | base | ./modules/base | n/a |
+| github | ./modules/github | n/a |
+| github\_app | github.com/humanitec-architecture/shared-terraform-modules | v2024-06-12//modules/github-app |
+| portal\_backstage | ./modules/portal-backstage | n/a |
+
+### Resources
+
+| Name | Type |
+|------|------|
+| [humanitec_service_user_token.deployer](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/service_user_token) | resource |
+| [humanitec_user.deployer](https://registry.terraform.io/providers/humanitec/humanitec/latest/docs/resources/user) | resource |
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| humanitec\_org\_id | Humanitec Organization ID | `string` | n/a | yes |
 | location | Azure region to deploy into | `string` | n/a | yes |
 | subscription\_id | Azure Subscription (ID) to use | `string` | n/a | yes |
+| github\_org\_id | GitHub org id (required for Backstage) | `string` | `null` | no |
+| humanitec\_org\_id | Humanitec Organization ID (required for Backstage) | `string` | `null` | no |
 | vm\_size | The Azure VM instances type to use as "Agents" (aka Kubernetes Nodes) in AKS | `string` | `"Standard_D2_v2"` | no |
+| with\_backstage | Deploy Backstage | `bool` | `false` | no |
 
 ### Outputs
 

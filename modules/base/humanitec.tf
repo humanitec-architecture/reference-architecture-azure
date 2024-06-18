@@ -6,10 +6,8 @@ resource "humanitec_resource_account" "cluster_account" {
   type = "azure"
 
   credentials = jsonencode({
-    "appId" : azuread_service_principal.humanitec.client_id,
-    "displayName" : azuread_application.main.display_name,
-    "password" : azuread_service_principal_password.humanitec.value,
-    "tenant" : azuread_service_principal.humanitec.application_tenant_id
+    "azure_identity_tenant_id" : azuread_service_principal.humanitec.application_tenant_id
+    "azure_identity_client_id" : azuread_service_principal.humanitec.client_id
   })
 }
 

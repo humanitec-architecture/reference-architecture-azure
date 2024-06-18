@@ -3,9 +3,10 @@
 module "base" {
   source = "./modules/base"
 
-  subscription_id = var.subscription_id
-  location        = var.location
-  vm_size         = var.vm_size
+  subscription_id  = var.subscription_id
+  location         = var.location
+  vm_size          = var.vm_size
+  humanitec_org_id = var.humanitec_org_id
 }
 
 # User used for scaffolding and deploying apps

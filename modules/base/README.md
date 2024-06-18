@@ -38,10 +38,10 @@ Module that provides the reference architecture.
 | Name | Type |
 |------|------|
 | [azuread_application.main](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application) | resource |
+| [azuread_application_federated_identity_credential.credential](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/application_federated_identity_credential) | resource |
 | [azuread_group.cluster_admins](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) | resource |
 | [azuread_group_member.cluster_admins](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) | resource |
 | [azuread_service_principal.humanitec](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal) | resource |
-| [azuread_service_principal_password.humanitec](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/service_principal_password) | resource |
 | [azurerm_container_registry.acr](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry) | resource |
 | [azurerm_public_ip.ingress](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
 | [azurerm_resource_group.main](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
@@ -63,6 +63,7 @@ Module that provides the reference architecture.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| humanitec\_org\_id | Humanitec Organization ID | `string` | n/a | yes |
 | location | Azure region to deploy into | `string` | n/a | yes |
 | subscription\_id | Azure Subscription (ID) to use | `string` | n/a | yes |
 | cluster\_name | Name for the AKS cluster | `string` | `"ref-arch"` | no |

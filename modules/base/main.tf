@@ -72,8 +72,13 @@ resource "azuread_service_principal" "humanitec" {
   owners    = [data.azuread_client_config.current.object_id]
 }
 
-resource "azuread_service_principal_password" "humanitec" {
-  service_principal_id = azuread_service_principal.humanitec.id
+resource "azuread_application_federated_identity_credential" "credential" {
+  application_id = azuread_application.main.id
+  display_name   = "AccessFromHumanitec"
+  description    = "Access From Humanitec"
+  audiences      = ["api://AzureADTokenExchange"]
+  issuer         = "https://idtoken.humanitec.io"
+  subject        = "${var.humanitec_org_id}/${humanitec_resource_account.cluster_account.id}"
 }
 
 # Required to fetch AKS credentials

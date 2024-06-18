@@ -269,10 +269,10 @@ Once you are finished with the reference architecture, you can remove all provis
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| humanitec\_org\_id | Humanitec Organization ID | `string` | n/a | yes |
 | location | Azure region to deploy into | `string` | n/a | yes |
 | subscription\_id | Azure Subscription (ID) to use | `string` | n/a | yes |
 | github\_org\_id | GitHub org id (required for Backstage) | `string` | `null` | no |
-| humanitec\_org\_id | Humanitec Organization ID (required for Backstage) | `string` | `null` | no |
 | vm\_size | The Azure VM instances type to use as "Agents" (aka Kubernetes Nodes) in AKS | `string` | `"Standard_D2_v2"` | no |
 | with\_backstage | Deploy Backstage | `bool` | `false` | no |
 

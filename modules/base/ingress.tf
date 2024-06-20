@@ -8,19 +8,10 @@ resource "azurerm_public_ip" "ingress" {
 
 # Ingress controller
 
-resource "kubernetes_namespace" "ingress_nginx" {
-  metadata {
-    labels = {
-      "pod-security.kubernetes.io/enforce" = "restricted"
-    }
-
-    name = "ingress-nginx"
-  }
-}
-
 resource "helm_release" "ingress_nginx" {
   name             = "ingress-nginx"
-  namespace        = kubernetes_namespace.ingress_nginx.metadata.0.name
+  namespace        = "ingress-nginx"
+  create_namespace = true
   repository       = "https://kubernetes.github.io/ingress-nginx"
 
   chart   = "ingress-nginx"

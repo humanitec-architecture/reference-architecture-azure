@@ -3,7 +3,7 @@
 resource "humanitec_resource_account" "cluster_account" {
   id   = var.cluster_name
   name = var.cluster_name
-  type = "azure"
+  type = "azure-identity"
 
   credentials = jsonencode({
     "azure_identity_tenant_id" : azuread_service_principal.humanitec.application_tenant_id

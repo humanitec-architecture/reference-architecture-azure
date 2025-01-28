@@ -16,7 +16,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| backstage\_postgres | github.com/humanitec-architecture/resource-packs-in-cluster | v2024-06-05//humanitec-resource-defs/postgres/basic |
+| backstage\_postgres | github.com/humanitec-architecture/resource-packs-in-cluster | v2024-11-05//humanitec-resource-defs/postgres/basic |
 | portal\_backstage | github.com/humanitec-architecture/shared-terraform-modules | v2024-06-12//modules/portal-backstage |
 
 ### Resources

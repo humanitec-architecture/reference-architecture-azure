@@ -30,8 +30,8 @@ Module that provides the reference architecture.
 | Name | Source | Version |
 |------|--------|---------|
 | azure\_aks | Azure/aks/azurerm | ~> 7 |
-| default\_mysql | github.com/humanitec-architecture/resource-packs-in-cluster | v2024-06-05//humanitec-resource-defs/mysql/basic |
-| default\_postgres | github.com/humanitec-architecture/resource-packs-in-cluster | v2024-06-05//humanitec-resource-defs/postgres/basic |
+| default\_mysql | github.com/humanitec-architecture/resource-packs-in-cluster | v2024-11-05//humanitec-resource-defs/mysql/basic |
+| default\_postgres | github.com/humanitec-architecture/resource-packs-in-cluster | v2024-11-05//humanitec-resource-defs/postgres/basic |
 
 ### Resources
 

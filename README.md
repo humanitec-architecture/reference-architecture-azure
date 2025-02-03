@@ -194,7 +194,7 @@ Backstage requires a GitHub connection, which in turn needs:
   ```
 
 * Install the GitHub App for Backstage into your GitHub organization
-  * Run `docker run --rm -it -e GITHUB_ORG_ID -v $(pwd):/pwd -p 127.0.0.1:3000:3000 ghcr.io/humanitec-architecture/create-gh-app` ([image source](https://github.com/humanitec-architecture/create-gh-app/)) and follow the instructions:
+  * Run `docker run --rm -it -e GITHUB_ORG_ID -e ACTIONS_WRITE=1 -v $(pwd):/pwd -p 127.0.0.1:3000:3000 ghcr.io/humanitec-architecture/create-gh-app` ([image source](https://github.com/humanitec-architecture/create-gh-app/)) and follow the instructions:
     * “All repositories” ~> Install
     * “Okay, […] was installed on the […] account.” ~> You can close the window and server.
 
